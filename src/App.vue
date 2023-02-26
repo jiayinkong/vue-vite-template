@@ -1,5 +1,20 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import User from '@/api/user'
+import { onMounted } from 'vue'
+
+const username = 'aaa'
+const password = '132453t34f'
+const login = async() => {
+  const res = await User.login(username, password)
+  console.log(res, '----------')
+}
+
+onMounted(() => {
+  login();
+})
+
+
 </script>
 
 <template>
