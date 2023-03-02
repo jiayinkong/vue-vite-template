@@ -27,6 +27,8 @@ onMounted(() => {
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <IxButton>test</IxButton>
+  <IxButton icon="search">Search</IxButton>
 </template>
 
 <style scoped>
