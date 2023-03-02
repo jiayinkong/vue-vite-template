@@ -1,11 +1,22 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import { viteMockServe } from 'vite-plugin-mock'
+import SetEnvByCommandArg, { getCommandArgv  } from 'vite-plugin-env-command';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   base: './',
-  plugins: [vue()],
+  plugins: [
+    vue(), 
+    viteMockServe({
+      mockPath: 'mock',
+      localEnabled: getCommandArgv() === 'dev',
+      ignore: /_util\.ts|_interface\.ts/
+    }),
+    SetEnvByCommandArg({
+      key: 'APP_ENV'
+    })
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, './src')
